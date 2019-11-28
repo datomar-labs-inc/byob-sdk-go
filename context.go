@@ -28,3 +28,8 @@ type RequestUser struct {
 	PlatformID string    `json:"platformId"`
 	Name       string    `json:"name"`
 }
+
+func (r *RequestContext) Error(err ExecError) {
+	r.Errors = append(r.Errors, err)
+	r.LastError = &err
+}

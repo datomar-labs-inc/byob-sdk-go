@@ -7,7 +7,7 @@ type WebhookRequest struct {
 	Context *RequestContext `json:"ctx"`
 }
 
-type WebhookHandler func(name string, ctx *RequestContext) (*ContextModifier, error)
+type WebhookHandler func(name string, ctx *RequestContext, cm *ContextModifier) error
 
 type WebhookManager struct {
 	handlers map[string]WebhookHandler
@@ -36,5 +36,12 @@ func (w *WebhookManager) Process(req *WebhookRequest) (*ContextModifier, error) 
 		h = w.catch
 	}
 
-	return h(req.Name, req.Context)
+	cm := NewContextModifier()
+
+	err := h(req.Name, req.Context, cm)
+	if err != nil {
+		return nil, err
+	}
+
+	return cm, nil
 }
