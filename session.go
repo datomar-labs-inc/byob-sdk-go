@@ -1,4 +1,4 @@
-package byob_sdk_go
+package byob
 
 // Session is used to keep track of information pertaining to a user
 type Session struct {

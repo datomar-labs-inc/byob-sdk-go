@@ -1,4 +1,4 @@
-package byob_sdk_go
+package byob
 
 type WebhookRequest struct {
 	Name    string          `json:"name"`
