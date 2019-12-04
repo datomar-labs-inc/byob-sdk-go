@@ -5,11 +5,11 @@ import (
 )
 
 type Flaggable struct {
-	FData map[string]interface{} `json:"data"`
+	FData map[string]interface{} `json:"data" mapstructure:"data" msgpack:"data"`
 }
 
 type FlaggableChangeset struct {
-	Changes []FlaggableChange `json:"changes"`
+	Changes []FlaggableChange `json:"changes" mapstructure:"changes" msgpack:"changes"`
 }
 
 const (
@@ -18,9 +18,9 @@ const (
 )
 
 type FlaggableChange struct {
-	Type int         `json:"type"`
-	Key  string      `json:"key"`
-	Data interface{} `json:"data"`
+	Type int         `json:"type" mapstructure:"type" msgpack:"type"`
+	Key  string      `json:"key" mapstructure:"key" msgpack:"key"`
+	Data interface{} `json:"data" mapstructure:"data" msgpack:"data"`
 }
 
 func NewFlaggableChangeset() *FlaggableChangeset {

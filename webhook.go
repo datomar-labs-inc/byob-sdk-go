@@ -3,8 +3,8 @@ package byob
 import "errors"
 
 type WebhookRequest struct {
-	Name    string          `json:"name"`
-	Context *RequestContext `json:"ctx"`
+	Name    string          `json:"name" mapstructure:"name" msgpack:"name"`
+	Context *RequestContext `json:"ctx" mapstructure:"ctx" msgpack:"ctx"`
 }
 
 type WebhookHandler func(name string, ctx *RequestContext, cm *ContextModifier) error

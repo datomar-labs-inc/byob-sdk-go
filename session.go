@@ -3,16 +3,16 @@ package byob
 // Session is used to keep track of information pertaining to a user
 type Session struct {
 	Flaggable
-	Stack  Stack  `json:"stack" binding:"required"`
+	Stack  Stack  `json:"stack" mapstructure:"stack" msgpack:"stack"`
 }
 
 type Frame struct {
-	Module int64 `json:"m" binding:"required"`
-	Node   int64 `json:"n" binding:"required"`
+	Module int64 `json:"m" mapstructure:"m" msgpack:"m"`
+	Node   int64 `json:"n" mapstructure:"n" msgpack:"n"`
 }
 
 type Stack struct {
-	Frames []Frame `json:"frames" binding:"required"`
+	Frames []Frame `json:"frames" mapstructure:"frames" msgpack:"frames"`
 }
 
 func (s *Stack) Push(frame Frame) {

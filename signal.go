@@ -6,9 +6,9 @@ import (
 
 // BrainSignal is the collection of information that the brain requires to process a request
 type BrainSignal struct {
-	EnvironmentID   uuid.UUID       `json:"environmentId"`
-	ContextModifier ContextModifier `json:"contextModifier"`
-	PlatformID      string          `json:"platformId"`
-	OriginPlatform  string          `json:"originPlatform"`
-	RawRequest      interface{}     `json:"rawRequest"`
+	EnvironmentID   uuid.UUID       `json:"environmentId" mapstructure:"environmentId" msgpack:"environmentId"`
+	ContextModifier ContextModifier `json:"contextModifier" mapstructure:"contextModifier" msgpack:"contextModifier"`
+	PlatformID      string          `json:"platformId" mapstructure:"platformId" msgpack:"platformId"`
+	OriginPlatform  string          `json:"originPlatform" mapstructure:"originPlatform" msgpack:"originPlatform"`
+	RawRequest      interface{}     `json:"rawRequest" mapstructure:"rawRequest" msgpack:"rawRequest"`
 }

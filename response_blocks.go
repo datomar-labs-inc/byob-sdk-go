@@ -7,8 +7,8 @@ import (
 )
 
 type ResponseBlock struct {
-	Type string `json:"t"`
-	Data string `json:"d"`
+	Type string `json:"t" mapstructure:"t" msgpack:"t"`
+	Data string `json:"d" mapstructure:"d" msgpack:"d"`
 }
 
 func NewResponseBlock(t string, data interface{}) *ResponseBlock {

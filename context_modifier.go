@@ -18,33 +18,33 @@ const (
 )
 
 type ContextModifier struct {
-	ContextChanges []ContextChange `json:"changes"`
-	Logs           []LogEntry      `json:"logs"`
-	Errors         []ExecError     `json:"errors"`
+	ContextChanges []ContextChange `json:"changes" mapstructure:"changes" msgpack:"changes"`
+	Logs           []LogEntry      `json:"logs" mapstructure:"logs" msgpack:"logs"`
+	Errors         []ExecError     `json:"errors" mapstructure:"errors" msgpack:"errors"`
 }
 
 type ContextChange struct {
-	Type      int         `json:"type"`
-	Operation int         `json:"op"`
-	Key       string      `json:"key"`
-	Data      interface{} `json:"data,omitempty"`
+	Type      int         `json:"type" mapstructure:"type" msgpack:"type"`
+	Operation int         `json:"op" mapstructure:"op" msgpack:"op"`
+	Key       string      `json:"key" mapstructure:"key" msgpack:"key"`
+	Data      interface{} `json:"data" mapstructure:"data" msgpack:"data"`
 }
 
 type LogEntry struct {
-	Level   int       `json:"level"`
-	Message string    `json:"message"`
-	Time    time.Time `json:"time"`
+	Level   int       `json:"level" mapstructure:"level" msgpack:"level"`
+	Message string    `json:"message" mapstructure:"message" msgpack:"message"`
+	Time    time.Time `json:"time" mapstructure:"time" msgpack:"time"`
 }
 
 type ExecError struct {
 	// NotationType should be one of "node", "link", "other"
-	ErrorType  string `json:"et"`
-	GraphID    int64  `json:"graphId"`
-	GraphName  string `json:"graphName,omitempty"`
-	NodeID     *int64 `json:"nodeId,omitempty"`
-	LinkSource *int64 `json:"linkSource,omitempty"`
-	LinkDest   *int64 `json:"linkDest,omitempty"`
-	Message    string `json:"message"`
+	ErrorType  string `json:"et" mapstructure:"et" msgpack:"et"`
+	GraphID    int64  `json:"graphId" mapstructure:"graphId" msgpack:"graphId"`
+	GraphName  string `json:"graphName" mapstructure:"graphName" msgpack:"graphName"`
+	NodeID     *int64 `json:"nodeId" mapstructure:"nodeId" msgpack:"nodeId"`
+	LinkSource *int64 `json:"linkSource" mapstructure:"linkSource" msgpack:"linkSource"`
+	LinkDest   *int64 `json:"linkDest" mapstructure:"linkDest" msgpack:"linkDest"`
+	Message    string `json:"message" mapstructure:"message" msgpack:"message"`
 }
 
 func NewContextModifier() *ContextModifier {
