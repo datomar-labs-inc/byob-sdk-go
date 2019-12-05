@@ -10,5 +10,6 @@ type BrainSignal struct {
 	ContextModifier ContextModifier `json:"contextModifier" mapstructure:"contextModifier" msgpack:"contextModifier"`
 	PlatformID      string          `json:"platformId" mapstructure:"platformId" msgpack:"platformId"`
 	OriginPlatform  string          `json:"originPlatform" mapstructure:"originPlatform" msgpack:"originPlatform"`
+	Text            string          `json:"text" mapstructure:"text" msgpack:"text"`
 	RawRequest      interface{}     `json:"rawRequest" mapstructure:"rawRequest" msgpack:"rawRequest"`
 }
