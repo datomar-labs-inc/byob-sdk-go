@@ -3,7 +3,8 @@ package byob
 // Session is used to keep track of information pertaining to a user
 type Session struct {
 	Flaggable
-	Stack  Stack  `json:"stack" mapstructure:"stack" msgpack:"stack"`
+	Stack   Stack  `json:"stack" mapstructure:"stack" msgpack:"stack"`
+	Version string `json:"ver" mapstructure:"ver" msgpack:"ver"`
 }
 
 type Frame struct {
