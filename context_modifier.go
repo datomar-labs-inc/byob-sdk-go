@@ -1,7 +1,8 @@
 package byob
 
 import (
-"time"
+	"encoding/json"
+	"time"
 )
 
 const (
@@ -72,6 +73,19 @@ func MergeContextModifiers(a, b *ContextModifier) *ContextModifier {
 }
 
 func (cm *ContextModifier) AddOperation(ccType int, op int, key string, data interface{}) *ContextModifier {
+	// Sanitize data for json
+	if data != nil {
+		jsb, err := json.Marshal(data)
+		if err == nil {
+			var newData map[string]interface{}
+
+			err = json.Unmarshal(jsb, &newData)
+			if err == nil {
+				data = newData
+			}
+		}
+	}
+
 	cm.ContextChanges = append(cm.ContextChanges, ContextChange{
 		Type:      ccType,
 		Operation: op,
