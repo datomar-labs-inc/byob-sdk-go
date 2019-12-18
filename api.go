@@ -50,7 +50,7 @@ func (c *Client) makeRequestWithBody(method, url string, body interface{}, out i
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s%s", c.baseURL, url), bytes.NewReader(jsb))
+	req, err := http.NewRequest(method, fmt.Sprintf("%s%s", c.baseURL, url), bytes.NewReader(jsb))
 	if err != nil {
 		return nil, err
 	}
