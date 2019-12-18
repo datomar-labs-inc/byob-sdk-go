@@ -16,6 +16,13 @@ type WebhookManager struct {
 
 var ErrNoValidHandlers = errors.New("no valid handlers existed, and no catch handler was defined")
 
+func NewWebhookManager() *WebhookManager {
+	return &WebhookManager{
+		handlers: make(map[string]WebhookHandler),
+		catch:    nil,
+	}
+}
+
 // Handle registers a handler that will be called when a webhook request is received with a matching name field
 func (w *WebhookManager) Handle(name string, handler WebhookHandler) {
 	w.handlers[name] = handler
