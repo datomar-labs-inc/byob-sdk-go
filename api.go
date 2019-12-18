@@ -44,7 +44,7 @@ func NewCustomAPIClient(apiKey string, baseURL string) *Client {
 	}
 }
 
-func (c *Client) postJSON(url string, body interface{}, out interface{}) (*APIError, error) {
+func (c *Client) makeRequestWithBody(method, url string, body interface{}, out interface{}) (*APIError, error) {
 	jsb, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (c *Client) postJSON(url string, body interface{}, out interface{}) (*APIEr
 func (c *Client) GetReachableUsers(query *UserQuery) (*ReachableUserResult, error) {
 	var res ReachableUserResult
 
-	apiErr, err := c.postJSON("/reachable-users", query, &res)
+	apiErr, err := c.makeRequestWithBody("POST", "/reachable-users", query, &res)
 	if err != nil {
 		return nil, err
 	} else if apiErr != nil {
@@ -104,7 +104,7 @@ func (c *Client) GetReachableUsers(query *UserQuery) (*ReachableUserResult, erro
 func (c *Client) Broadcast(input *BroadcastInput) (*BroadcastResult, error) {
 	var res BroadcastResult
 
-	apiErr, err := c.postJSON("/broadcast", input, &res)
+	apiErr, err := c.makeRequestWithBody("POST", "/broadcast", input, &res)
 	if err != nil {
 		return nil, err
 	} else if apiErr != nil {
@@ -112,4 +112,17 @@ func (c *Client) Broadcast(input *BroadcastInput) (*BroadcastResult, error) {
 	}
 
 	return &res, nil
+}
+
+func (c *Client) UpdateUserData(superUserId string, input *UpdateUserDataInput) (map[string]interface{}, error) {
+	var res map[string]interface{}
+
+	apiErr, err := c.makeRequestWithBody("PUT", fmt.Sprintf("/users/%s/data", superUserId), input, &res)
+	if err != nil {
+		return nil, err
+	} else if apiErr != nil {
+		return nil, apiErr
+	}
+
+	return res, nil
 }

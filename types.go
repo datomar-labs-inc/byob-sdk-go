@@ -42,3 +42,11 @@ type UserQuery struct {
 	Mode   int64        `json:"mode"`
 }
 
+type UpdateUserDataInput struct {
+	// A list of keys and their values to be set on the user data
+	// If the key exists it will be overwritten
+	Set    map[string]interface{} `json:"set"`
+
+	// A list of keys to be remove from the user data, if the keys did not exist, nothing happens
+	Delete []string               `json:"delete"`
+}
