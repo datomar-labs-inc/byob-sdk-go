@@ -50,7 +50,7 @@ func (c *Client) postJSON(url string, body interface{}, out interface{}) (*APIEr
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/%s", c.baseURL, url), bytes.NewReader(jsb))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s%s", c.baseURL, url), bytes.NewReader(jsb))
 	if err != nil {
 		return nil, err
 	}
