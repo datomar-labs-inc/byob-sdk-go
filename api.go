@@ -56,6 +56,7 @@ func (c *Client) makeRequestWithBody(method, url string, body interface{}, out i
 	}
 
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.apiKey))
+	req.Header.Add("Content-Type", "application/json")
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
