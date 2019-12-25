@@ -13,7 +13,7 @@ type RequestContext struct {
 	OriginPlatform  string                 `json:"originPlatform" mapstructure:"originPlatform" msgpack:"originPlatform"`
 	OriginalRequest interface{}            `json:"originalRequest" mapstructure:"originalRequest" msgpack:"originalRequest"`
 	IsStart         bool                   `json:"isStart" mapstructure:"isStart" msgpack:"isStart"`
-	IsBroadcast     bool                   `json:"isBroadcast" mapstructure:"isBroadcast" msgpack:"isBroadcast"`
+	IsTrigger       bool                   `json:"isTrigger" mapstructure:"isTrigger" msgpack:"isTrigger"`
 	Errors          []ExecError            `json:"errors" mapstructure:"errors" msgpack:"errors"`
 	Response        *Response              `json:"response" mapstructure:"response" msgpack:"response"`
 
