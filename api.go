@@ -26,7 +26,7 @@ func (a *APIError) Error() string {
 
 func NewAPIClient(apiKey string) *Client {
 	return &Client{
-		baseURL: "https://api.convey.dev/v1",
+		baseURL: "https://api.convey.dev/api/v1",
 		apiKey:  apiKey,
 		httpClient: &http.Client{
 			Timeout: 15 * time.Second,
